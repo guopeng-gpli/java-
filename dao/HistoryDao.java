@@ -1,24 +1,17 @@
 package dao;
 
-import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import com.sun.org.apache.regexp.internal.recompile;
-
 import service.CategorieService;
-import ui.GoodsAdministrator;
-
 import entity.Customers;
 import entity.HistoryInfo;
-import entity.ProductInfo;
-import entity.Products;
+
+
 
 public class HistoryDao {
 	
@@ -61,8 +54,6 @@ public class HistoryDao {
 				history.setcaNo(rs.getInt(6));
 				history.setTime(rs.getString(7));
 				history.setCustomerNo(rs.getString(8));	
-				//CategorieService cs = new CategorieService();
-				//product.setCategoryName(cs.getCategoryNameService(product.getCategoryId()));
 				list.add(history);
 			}
 			

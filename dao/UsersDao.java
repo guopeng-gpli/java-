@@ -76,8 +76,8 @@ public class UsersDao {
 	
 	public boolean newUsersDao(Users user){
 		boolean flag = false;
-		String sql = "insert into users values(?,?,?)";
-		Object[] objs = {user.getUserName(),user.getPassword(),user.getRoleId()};
+		String sql = "insert into users values(?,?,?,?)";
+		Object[] objs = {user.getUserId(),user.getUserName(),user.getPassword(),user.getRoleId()};
 		flag = DBManager.executeUpdate(sql, objs);
 		return flag;
 	}

@@ -25,6 +25,7 @@ public class NewAdministrator extends JFrame {
 	private JPanel contentPane;
 	private JTextField userName;
 	private JTextField pwd;
+	private JTextField userId;
 
 	/**
 	 * Launch the application.
@@ -54,13 +55,21 @@ public class NewAdministrator extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel labe0 = new JLabel("收银台编号:");
+		labe0.setBounds(85, 7, 104, 15);
+		contentPane.add(labe0);
+		userId = new JTextField();
+		userId.setColumns(10);
+		userId.setBounds(186, 7, 168, 21);
+		contentPane.add(userId);
+		
 		JLabel label = new JLabel("用户名:");
-		label.setBounds(85, 47, 54, 15);
+		label.setBounds(85, 50, 54, 15);
 		contentPane.add(label);
 		
 		userName = new JTextField();
 		userName.setColumns(10);
-		userName.setBounds(186, 44, 168, 21);
+		userName.setBounds(186, 50, 168, 21);
 		contentPane.add(userName);
 		
 		JLabel label_1 = new JLabel("密码:");
@@ -96,6 +105,9 @@ public class NewAdministrator extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Users user = new Users();
+				String s = userId.getText();
+				int i = Integer.parseInt(s);
+				user.setUserId(i);
 				user.setUserName(userName.getText());
 				user.setPassword(pwd.getText());
 				if(rdbtnNewRadioButton.isSelected()){
