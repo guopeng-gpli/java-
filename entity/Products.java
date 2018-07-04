@@ -6,7 +6,7 @@ public class Products {
 	private String productName;//商品名
 	private String type;//规格
 	private String unit;//单位
-	private int count;//库存数量
+	private int count=-1;//库存数量
 	private double price;//单价
 	private double discount;//折扣
 	public Products() {

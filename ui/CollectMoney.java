@@ -123,6 +123,12 @@ public class CollectMoney extends JFrame {
 					ProductInfo pi = new ProductInfo();
 					pi = ps.getProductInfoByProductNoService(ProductNo);
 					SaleSummary s = new SaleSummary();
+					/*
+					 * 问题：货物是0，才会去执行else；但是现在不执行这个代码，货物根本不存在啊
+					 * 解决：把entity中的count初始化为-1，货物不存在就还是-1，无货会变成0
+					 * 
+					 * */
+					//System.out.println(pi.getCount());
 					if (pi.getCount() >= num) {
 						s.setProductNo(ProductNo);
 						s.setSaleCount(num);
@@ -157,14 +163,14 @@ public class CollectMoney extends JFrame {
 						totalAmount += amount;
 						totalAmount = Double.valueOf(df.format(totalAmount));
 						Object[] row = { s.getProductNo(), s.getSaleCount(),
-								s.getPrice(), s.getDiscount(), 0000, time,
+								s.getPrice(), s.getDiscount(), s.getUserId(), time,
 								customerNo, s.getMemberDiscount(),
 								s.getTotalAmount() };
 						model.addRow(row);
 						proNo.setText("");
 						number.setText("");
 						lblNewLabel_1.setText("购物总价:" + totalAmount);
-					} else {
+					} else if(pi.getCount()!=-1){
 						JOptionPane.showMessageDialog(null,
 								"库存不足!剩余库存为" + pi.getCount(), "错误提示",
 								JOptionPane.ERROR_MESSAGE);

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -24,9 +25,8 @@ public class NewAdministrator extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField userName;
-	private JTextField pwd;
 	private JTextField userId;
-
+	final JPasswordField pwd =new JPasswordField();
 	/**
 	 * Launch the application.
 	 */
@@ -75,11 +75,12 @@ public class NewAdministrator extends JFrame {
 		JLabel label_1 = new JLabel("密码:");
 		label_1.setBounds(85, 95, 54, 15);
 		contentPane.add(label_1);
-		
-		pwd = new JTextField();
+
 		pwd.setColumns(10);
 		pwd.setBounds(186, 92, 168, 21);
 		contentPane.add(pwd);
+		
+	
 		
 		JLabel label_2 = new JLabel("管理员级别:");
 		label_2.setBounds(85, 144, 66, 15);

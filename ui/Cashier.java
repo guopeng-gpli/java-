@@ -56,12 +56,12 @@ public class Cashier extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 523, 370);
 		
-		JMenuBar menuBar = new JMenuBar();
+		JMenuBar menuBar = new JMenuBar();//菜单栏
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("收银员信息管理(M)");
-		mnNewMenu.setMnemonic('M');
-		mnNewMenu.setHorizontalAlignment(SwingConstants.LEFT);
+		JMenu mnNewMenu = new JMenu("收银员信息管理(M)");//构造一个新 JMenu，用提供的字符串作为其文本。
+		mnNewMenu.setMnemonic('M');//键盘助记符
+		mnNewMenu.setHorizontalAlignment(SwingConstants.LEFT);//设置对齐方式
 		menuBar.add(mnNewMenu);
 		
 		contentPane = new JPanel();
@@ -97,7 +97,8 @@ public class Cashier extends JFrame {
 				UsersService us = new UsersService();
 				final Users changeUser =  us.getUsersByUserIdService(userId);
 				//显示修改密码界面
-				{JLabel labelun = new JLabel("用户名:");
+				{
+				JLabel labelun = new JLabel("用户名:");
 				labelun.setBounds(88, 40, 54, 15);
 				contentPane.add(labelun);
 				
@@ -177,17 +178,18 @@ public class Cashier extends JFrame {
 				btnNewButton_1.setBounds(235, 216, 93, 23);
 				contentPane.add(btnNewButton_1);
 				//刷新页面
-				Cashier.this.repaint();}
+				Cashier.this.repaint();
+				}
 				
 				
 				
 			}
 		});
 		mnNewMenu.add(jmi1);
-		JMenuItem jmi2 = new JMenuItem("注销(W)");
-		jmi2.setMnemonic('W');
-		jmi2.setHorizontalAlignment(SwingConstants.CENTER);
-		jmi2.addActionListener(new ActionListener() {
+		JMenuItem Cancellation= new JMenuItem("注销(W)");
+		Cancellation.setMnemonic('W');
+		Cancellation.setHorizontalAlignment(SwingConstants.CENTER);
+		Cancellation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Cashier.this.dispose();
@@ -195,17 +197,19 @@ public class Cashier extends JFrame {
 				l.setVisible(true);
 			}
 		});
-		mnNewMenu.add(jmi2);
-		JMenuItem jmi3 = new JMenuItem("退出(R)");
-		jmi3.setMnemonic('R');
-		jmi3.setHorizontalAlignment(SwingConstants.CENTER);
-		jmi3.addActionListener(new ActionListener() {
+		mnNewMenu.add(Cancellation);
+		
+		
+		JMenuItem exit = new JMenuItem("退出(R)");
+		exit.setMnemonic('R');
+		exit.setHorizontalAlignment(SwingConstants.CENTER);
+		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Cashier.this.dispose();
 			}
 		});
-		mnNewMenu.add(jmi3);
+		mnNewMenu.add(exit);
 		
 		
 		//会员收银
@@ -230,6 +234,7 @@ public class Cashier extends JFrame {
 						if(cs.checkCustomerDao(customerNo)){
 							Cashier.this.dispose();
 							CollectMoney cm = new CollectMoney(userId, customerNo);
+							//System.out.println("cm"+userId);
 							cm.setVisible(true);
 						}
 					}

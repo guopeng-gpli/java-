@@ -1,8 +1,6 @@
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,10 +14,6 @@ import javax.swing.JButton;
 
 import service.UsersService;
 
-import dao.UsersDao;
-
-import entity.Users;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -27,10 +21,10 @@ import java.awt.event.ItemListener;
 
 public class Login extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel contentPane;//面板  默认流式flowlayout布局
 	private JTextField userName;
-	private JTextField pwd;
-	private int roleId = 0;
+	final JPasswordField pwd =new JPasswordField();
+	private int roleId = 0;//角色
 
 	/**
 	 * Launch the application.
@@ -52,7 +46,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		this.setTitle("java+网络课程设计--超市管理系统");
+		this.setTitle("课程设计--超市收银系统");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 300);
 		contentPane = new JPanel();
@@ -60,7 +54,7 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel Jusername = new JLabel("用户名:");
+		JLabel Jusername = new JLabel("用户名:");//标签
 		/*
 		 * setBounds(int x,int y,int width,int height)
 		 *  x - 组件的新 x 坐标
@@ -74,18 +68,15 @@ public class Login extends JFrame {
 		userName = new JTextField();
 		userName.setBounds(186, 49, 141, 21);
 		contentPane.add(userName);
-		//userName.setColumns(10);
 		
 		JLabel Jpwd = new JLabel("密码:");
 		Jpwd.setBounds(82, 98, 54, 15);
 		contentPane.add(Jpwd);
-		final JPasswordField pwd =new JPasswordField();
+
 		pwd.setBounds(186,95,141,21);
-	//	pwd = new JTextField();
 		pwd.setColumns(10);
-	//	pwd.setBounds(186, 95, 141, 21);
-		//contentPane.add(pwd);
 		contentPane.add(pwd);
+		
 		JLabel label_1 = new JLabel("管理员类别:");
 		label_1.setBounds(82, 144, 79, 15);
 		contentPane.add(label_1);
@@ -96,7 +87,6 @@ public class Login extends JFrame {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(ItemEvent.SELECTED==e.getStateChange()){
-					//String item = (String) comboBox.getSelectedItem();
 					roleId = comboBox.getSelectedIndex();
 				}
 			}
@@ -108,20 +98,20 @@ public class Login extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String UserName = userName.getText();//获取输入的名字
-				String Pwd = pwd.getText();//获取输入的密码
-				UsersService user = new UsersService();
-				if(user.checkUsersService(UserName, Pwd, roleId)){//将输入的三个参数与数据库中的进行比较
+				String Pwd = pwd.getText();//获取输入的密码,方法过时！！
+				UsersService user = new UsersService();//用户相关服务
+				if(user.checkUsersService(UserName, Pwd, roleId)){//将输入的三个参数与数据库中的进行比对
 					Login.this.dispose();
-					if(roleId == 0){
+					if(roleId == 0){//主管理员
 						RootAdministrator ra = new RootAdministrator();
 						ra.setVisible(true);
-					}else if(roleId == 1){
+					}else if(roleId == 1){//货物管理
 						GoodsAdministrator ga = new GoodsAdministrator();
 						ga.setVisible(true);
-					}else if(roleId == 2){
+					}else if(roleId == 2){//收银员
 						UsersService us = new UsersService();
-						int userId = 0;
-						userId = us.getUserIdByUserNameService(UserName);
+						//int userId = 0;
+						int userId = us.getUserIdByUserNameService(UserName);
 						Cashier c = new Cashier(userId);
 						c.setVisible(true);
 					}
