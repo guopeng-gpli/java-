@@ -68,13 +68,6 @@ public class CustomerDao {
 			DBManager.closeAll(conn, stat, rs);
 		}
 		return customerNo;
-		
-		
-		
-		//String sql1 = "select customer_no where customer_name=?";
-		//Object[] objs1 = {customer.getCustomerName()};
-		//flag = DBManager.executeUpdate(sql1, objs1);
-		//return flag;
 	}
 	public boolean deleteCustomersDao(String customerNo){
 		boolean flag = false;

@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
 public class NewCustomer extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField cstNo;
 	private JTextField cstName;
 	private JTextField telephone;
 
@@ -89,8 +88,9 @@ public class NewCustomer extends JFrame {
 				customer.setPhone(telephone.getText());
 				CustomerService cs = new CustomerService();
 				//if(cs.checkCustomerNoDao(cstNo.getText())){
-					if(cs.newCustomersService(customer)!=0){
-						JOptionPane.showMessageDialog(NewCustomer.this, "添加会员成功!会员号码是"+cs.newCustomersService(customer));
+				int flag=cs.newCustomersService(customer);
+					if(flag!=0){
+						JOptionPane.showMessageDialog(NewCustomer.this, "添加会员成功!会员号码是"+flag);
 					}else{
 						JOptionPane.showMessageDialog(NewCustomer.this, "添加会员失败!");
 					}
