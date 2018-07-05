@@ -8,12 +8,12 @@ public class SaleHistory {
 	private double discount;//商品折扣
 	private int userId;//管理员编号
 	private String saleTime;//售出时间
-	private String customerNo;//消费者编号
+	private int customerNo;//消费者编号
 	public SaleHistory() {
 		super();
 	}
 	public SaleHistory(int id, String productNo, int saleCount, double price,
-			double discount, int userId, String saleTime, String customerNo) {
+			double discount, int userId, String saleTime, int customerNo) {
 		super();
 		this.id = id;
 		this.productNo = productNo;
@@ -66,10 +66,10 @@ public class SaleHistory {
 	public void setSaleTime(String saleTime) {
 		this.saleTime = saleTime;
 	}
-	public String getCustomerNo() {
+	public int getCustomerNo() {
 		return customerNo;
 	}
-	public void setCustomerNo(String customerNo) {
+	public void setCustomerNo(int customerNo) {
 		this.customerNo = customerNo;
 	}
 	

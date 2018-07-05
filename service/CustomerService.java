@@ -11,7 +11,7 @@ public class CustomerService {
 		CustomerDao cd = new CustomerDao();
 		return cd.getAllCustomersDao();
 	}
-	public boolean newCustomersService(Customers customer){
+	public int newCustomersService(Customers customer){
 		CustomerDao cd = new CustomerDao();
 		return cd.newCustomersDao(customer);
 	}
@@ -19,15 +19,15 @@ public class CustomerService {
 		CustomerDao cd = new CustomerDao();
 		return cd.deleteCustomersDao(customerNo);
 	}
-	public boolean checkCustomerDao(String customerNo){
+	public boolean checkCustomerDao(int customerNo){
 		CustomerDao cd = new CustomerDao();
 		return cd.checkCustomerDao(customerNo);
 	}
-	public double getMemberDiscountByCustomerNoService(String customerNo){
+	public double getMemberDiscountByCustomerNoService(int customerNo){
 		CustomerDao cd = new CustomerDao();
 		return cd.getMemberDiscountByCustomerNoDao(customerNo);
 	}
-	public boolean updateCustomerScoreDao(String customerNo,int score){
+	public boolean updateCustomerScoreDao(int customerNo,int score){
 		CustomerDao cd = new CustomerDao();
 		return cd.updateCustomerScoreDao(customerNo, score);
 	}

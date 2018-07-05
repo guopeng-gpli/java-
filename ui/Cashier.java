@@ -229,7 +229,13 @@ public class Cashier extends JFrame {
 				JButton btnNewButton_2 = new JButton("收银");
 				btnNewButton_2.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String customerNo = textField_3.getText();
+						String customerNo1 = textField_3.getText();
+						 int customerNo = 0;
+						try {
+						    customerNo = Integer.parseInt(customerNo1);
+						} catch (NumberFormatException e1) {
+						    e1.printStackTrace();
+						}
 						CustomerService cs = new CustomerService();
 						if(cs.checkCustomerDao(customerNo)){
 							Cashier.this.dispose();
@@ -260,7 +266,7 @@ public class Cashier extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cashier.this.dispose();
-				CollectMoney cm = new CollectMoney(userId,"000000");
+				CollectMoney cm = new CollectMoney(userId,0);
 				cm.setVisible(true);
 			}
 		});

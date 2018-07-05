@@ -45,7 +45,7 @@ public class CollectMoney extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CollectMoney frame = new CollectMoney(1003, "000000");
+					CollectMoney frame = new CollectMoney(1003, 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +57,7 @@ public class CollectMoney extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CollectMoney(final int userId, final String customerNo) {
+	public CollectMoney(final int userId, final int customerNo) {
 		this.setTitle("收银界面");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 599, 383);
@@ -147,8 +147,7 @@ public class CollectMoney extends JFrame {
 						/*
 						 * 以下两行是判断会员折扣的
 						 * */
-						s.setMemberDiscount(Double.valueOf(df.format(cs
-								.getMemberDiscountByCustomerNoService(customerNo))));
+						s.setMemberDiscount(Double.valueOf(df.format(cs.getMemberDiscountByCustomerNoService(customerNo))));
 						double amount = pi.getPrice() * num * pi.getDiscount()
 								* s.getMemberDiscount();
 						
@@ -245,7 +244,7 @@ public class CollectMoney extends JFrame {
 //				else {
 //					System.out.println("无需新增会员");
 //				}
-				if(!customerNo.equals("000000")){
+				if(customerNo!=0){
 					System.out.println("新增积分");
 					CustomerService cs = new CustomerService();
 					cs.updateCustomerScoreDao(customerNo,(int)(totalAmount));

@@ -53,14 +53,14 @@ public class NewCustomer0  extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("会员编号:");
-		lblNewLabel.setBounds(80, 35, 76, 15);
-		contentPane.add(lblNewLabel);
+		//JLabel lblNewLabel = new JLabel("会员编号:");
+	//	lblNewLabel.setBounds(80, 35, 76, 15);
+	//	contentPane.add(lblNewLabel);
 		
-		cstNo = new JTextField();
-		cstNo.setBounds(166, 32, 148, 21);
-		contentPane.add(cstNo);
-		cstNo.setColumns(10);
+	//	cstNo = new JTextField();
+	//	cstNo.setBounds(166, 32, 148, 21);
+	//	contentPane.add(cstNo);
+		//cstNo.setColumns(10);
 		
 		JLabel label = new JLabel("会员名:");
 		label.setBounds(89, 80, 54, 15);
@@ -84,17 +84,17 @@ public class NewCustomer0  extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Customers customer = new Customers();
-				customer.setCustomerNo(cstNo.getText());
+				//customer.setCustomerNo(cstNo.getText());
 				customer.setCustomerName(cstName.getText());
 				customer.setPhone(telephone.getText());
 				CustomerService cs = new CustomerService();
-				if(cs.checkCustomerNoDao(cstNo.getText())){
-					if(cs.newCustomersService(customer)){
-						JOptionPane.showMessageDialog(NewCustomer0.this, "添加会员成功!");
+				//if(cs.checkCustomerNoDao(cstNo.getText())){
+					if(cs.newCustomersService(customer)!=0){
+						JOptionPane.showMessageDialog(NewCustomer0.this, "添加会员成功!会员号码是"+cs.newCustomersService(customer));
 					}else{
 						JOptionPane.showMessageDialog(NewCustomer0.this, "添加会员失败!");
 					}
-				}
+				//}
 			}
 		});
 		btnNewButton.setBounds(99, 189, 93, 23);

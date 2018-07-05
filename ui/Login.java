@@ -54,7 +54,7 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel Jusername = new JLabel("用户名:");//标签
+		JLabel Jusername = new JLabel("员工名:");//标签
 		/*
 		 * setBounds(int x,int y,int width,int height)
 		 *  x - 组件的新 x 坐标
@@ -77,7 +77,7 @@ public class Login extends JFrame {
 		pwd.setColumns(10);
 		contentPane.add(pwd);
 		
-		JLabel label_1 = new JLabel("管理员类别:");
+		JLabel label_1 = new JLabel("员工类别:");
 		label_1.setBounds(82, 144, 79, 15);
 		contentPane.add(label_1);
 		

@@ -27,7 +27,7 @@ public class CustomerDao {
 			rs=stat.executeQuery();
 			while(rs.next()){
 				Customers customer=new Customers();
-				customer.setCustomerNo(rs.getString(1));
+				customer.setCustomerNo(rs.getInt(1));
 				customer.setCustomerName(rs.getString(2));
 				customer.setPhone(rs.getString(3));
 				customer.setScore(rs.getInt(4));
@@ -40,12 +40,41 @@ public class CustomerDao {
 		}
 		return list;
 	}
-	public boolean newCustomersDao(Customers customer){
+	public int newCustomersDao(Customers customer){
 		boolean flag = false;
-		String sql = "insert into customers values(?,?,?,?)";
-		Object[] objs = {customer.getCustomerNo(),customer.getCustomerName(),customer.getPhone(),0};
+		String sql = "insert into customers (customer_name,phone,score) values(?,?,?)";
+		Object[] objs = {customer.getCustomerName(),customer.getPhone(),0};
 		flag = DBManager.executeUpdate(sql, objs);
-		return flag;
+		
+		
+		
+		
+		int customerNo = 0;
+		Connection conn=DBManager.getConnection();
+		PreparedStatement stat=null;
+		ResultSet rs=null;
+		try {
+			stat=conn.prepareStatement("select customer_no from customers where customer_name= ? ");
+			stat.setString(1,customer.getCustomerName());
+			rs=stat.executeQuery();
+			if(rs.next()){
+				 customerNo = rs.getInt(1);
+			}else{
+				JOptionPane.showMessageDialog(null,"新增会员错误","错误提示",JOptionPane.ERROR_MESSAGE);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBManager.closeAll(conn, stat, rs);
+		}
+		return customerNo;
+		
+		
+		
+		//String sql1 = "select customer_no where customer_name=?";
+		//Object[] objs1 = {customer.getCustomerName()};
+		//flag = DBManager.executeUpdate(sql1, objs1);
+		//return flag;
 	}
 	public boolean deleteCustomersDao(String customerNo){
 		boolean flag = false;
@@ -54,14 +83,14 @@ public class CustomerDao {
 		flag = DBManager.executeUpdate(sql, objs);
 		return flag;
 	}
-	public boolean checkCustomerDao(String customerNo){
+	public boolean checkCustomerDao(int customerNo){
 		boolean flag = false;
 		Connection conn=DBManager.getConnection();
 		PreparedStatement stat=null;
 		ResultSet rs=null;
 		try {
 			stat=conn.prepareStatement("select * from customers where customer_no = ?");
-			stat.setString(1, customerNo);
+			stat.setInt(1, customerNo);
 			rs=stat.executeQuery();
 			if(rs.next()){
 				flag = true;
@@ -96,14 +125,14 @@ public class CustomerDao {
 		}
 		return flag;
 	}
-	public double getMemberDiscountByCustomerNoDao(String customerNo){
+	public double getMemberDiscountByCustomerNoDao(int customerNo){
 		double discount = 1;
 		Connection conn=DBManager.getConnection();
 		PreparedStatement stat=null;
 		ResultSet rs=null;
 		try {
 			stat=conn.prepareStatement("select * from customers where customer_no = ?");
-			stat.setString(1, customerNo);
+			stat.setInt(1, customerNo);
 			rs=stat.executeQuery();
 			if(rs.next()){
 				int score = rs.getInt(4);
@@ -124,7 +153,7 @@ public class CustomerDao {
 		}
 		return discount;
 	}
-	public boolean updateCustomerScoreDao(String customerNo,int score){
+	public boolean updateCustomerScoreDao(int customerNo,int score){
 		boolean flag = false;
 		String sql = "update customers set score=score+ ? where customer_no = ?";
 		Object[] objs = {score,customerNo};

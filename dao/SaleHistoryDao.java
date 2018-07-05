@@ -8,7 +8,7 @@ import entity.SaleHistory;
 public class SaleHistoryDao {
 	public boolean newSaleHistoryDao(SaleHistory saleHistory){
 		boolean flag = false;
-		if (saleHistory.getCustomerNo()=="000000") {
+		if (saleHistory.getCustomerNo()==0) {
 			System.out.println("这个人的信息没必要插入");
 			return flag;
 		}

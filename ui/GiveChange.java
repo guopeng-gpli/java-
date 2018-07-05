@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -26,7 +28,7 @@ public class GiveChange extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GiveChange frame = new GiveChange(0,1003,"0");
+					GiveChange frame = new GiveChange(0,1003,0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +41,7 @@ public class GiveChange extends JFrame {
 	 * Create the frame.
 	 * @param customerNo 
 	 */
-	public GiveChange(final double totalAmount,final int userId, final String customerNo) {
+	public GiveChange(final double totalAmount,final int userId, final int customerNo) {
 		this.setTitle("找零界面");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 450, 300);
@@ -71,13 +73,19 @@ public class GiveChange extends JFrame {
 		JButton btnNewButton = new JButton("确认支付");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				change = Integer.valueOf(textField.getText())-totalAmount;
+				change = Double.valueOf(textField.getText())-totalAmount;
 				DecimalFormat df = new DecimalFormat("#.00");
 				change = Double.valueOf(df.format(change));
+				if(change<0){
+					JOptionPane.showMessageDialog(null,"付款不足，请支付"+totalAmount+"元","错误提示",JOptionPane.ERROR_MESSAGE);}
+				else{
+			//	DecimalFormat df = new DecimalFormat("#.00");
+			//	change = Double.valueOf(df.format(change));
 				label.setText("找零金额:"+change);
+				}
 				
 				
-				if(customerNo.equals("000000")&&(totalAmount>200||totalAmount==200)){
+				if(customerNo==0&&(totalAmount>200||totalAmount==200)){
 					NewCustomer0 nc = new NewCustomer0(userId);
 					nc.setVisible(true);
 				}

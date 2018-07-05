@@ -1,7 +1,7 @@
 package entity;
 
 public class Customers {
-	private String customerNo;//会员编号
+	private int customerNo;//会员编号
 	private String customerName;//会员姓名
 	private String phone;//会员电话
 	private int score;//会员积分
@@ -9,7 +9,7 @@ public class Customers {
 	public Customers() {
 		super();
 	}
-	public Customers(String customerNo, String customerName, String phone,
+	public Customers(int customerNo, String customerName, String phone,
 			int score) {
 		super();
 		this.customerNo = customerNo;
@@ -17,10 +17,10 @@ public class Customers {
 		this.phone = phone;
 		this.score = score;
 	}
-	public String getCustomerNo() {
+	public int getCustomerNo() {
 		return customerNo;
 	}
-	public void setCustomerNo(String customerNo) {
+	public void setCustomerNo(int customerNo) {
 		this.customerNo = customerNo;
 	}
 	public String getCustomerName() {
