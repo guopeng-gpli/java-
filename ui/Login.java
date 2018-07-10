@@ -110,7 +110,6 @@ public class Login extends JFrame {
 						ga.setVisible(true);
 					}else if(roleId == 2){//收银员
 						UsersService us = new UsersService();
-						//int userId = 0;
 						int userId = us.getUserIdByUserNameService(UserName);
 						Cashier c = new Cashier(userId);
 						c.setVisible(true);

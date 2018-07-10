@@ -1,5 +1,7 @@
 package entity;
 
+import javax.swing.JOptionPane;
+
 public class SaleHistory {
 	private int id;//记录编号
 	private String productNo;//商品编号
@@ -45,8 +47,17 @@ public class SaleHistory {
 	public double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public int setPrice(double price) {
+		int flag=0;
+		if(price<0)
+		{flag=0;
+			
+		}
+		else {
+			this.price = price;
+			flag=1;
+		}
+		return flag; 
 	}
 	public double getDiscount() {
 		return discount;

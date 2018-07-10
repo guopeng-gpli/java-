@@ -164,8 +164,15 @@ public class NewProducts extends JFrame {
 								JOptionPane.showMessageDialog(null,"库存数量不能为空","错误提示",JOptionPane.ERROR_MESSAGE);
 							}else{
 								product.setCount(Integer.valueOf(Count.getText()));
-								if(Price.getText().isEmpty()){
-									JOptionPane.showMessageDialog(null,"单价不能为空","错误提示",JOptionPane.ERROR_MESSAGE);
+								String str1=Price.getText();
+								int a = 0;
+								try {
+								    a = Integer.parseInt(str1);
+								} catch (NumberFormatException e1) {
+								    e1.printStackTrace();
+								}
+								if(Price.getText().isEmpty()||a<=0){
+									JOptionPane.showMessageDialog(null,"单价不能为空或负数","错误提示",JOptionPane.ERROR_MESSAGE);
 								}else{
 									product.setPrice(Double.valueOf(Price.getText()));
 									if(Discount.getText().isEmpty()){

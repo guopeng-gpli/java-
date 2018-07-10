@@ -132,7 +132,10 @@ public class CollectMoney extends JFrame {
 					if (pi.getCount() >= num) {
 						s.setProductNo(ProductNo);
 						s.setSaleCount(num);
-						s.setPrice(pi.getPrice());
+						if(s.setPrice(pi.getPrice())==0)
+						{JOptionPane.showMessageDialog(null, "该商品价格小于0！请联系货物管理员", "错误提示",
+								JOptionPane.ERROR_MESSAGE);}
+						else{
 						s.setDiscount(pi.getDiscount());
 						s.setUserId(userId);
 						Calendar c = Calendar.getInstance();
@@ -169,7 +172,7 @@ public class CollectMoney extends JFrame {
 						proNo.setText("");
 						number.setText("");
 						lblNewLabel_1.setText("购物总价:" + totalAmount);
-					} else if(pi.getCount()!=-1){
+					}} else if(pi.getCount()!=-1){
 						JOptionPane.showMessageDialog(null,
 								"库存不足!剩余库存为" + pi.getCount(), "错误提示",
 								JOptionPane.ERROR_MESSAGE);

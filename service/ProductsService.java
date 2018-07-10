@@ -16,10 +16,7 @@ public class ProductsService {
 		ProductsDao pd = new ProductsDao();
 		return pd.getProductInfoByProductNo(ProductNo);
 	}
-//	public ProductInfo getProductInfoByCustomerNoService(String CustomerNo){
-//		ProductsDao pd = new ProductsDao();
-//		return pd.getProductInfoByCustomerNo(CustomerNo);
-//	}
+
 	public ProductInfo getProductInfoByproductNameService(String productName){
 		ProductsDao pd = new ProductsDao();
 		return pd.getProductInfoByproductName(productName);

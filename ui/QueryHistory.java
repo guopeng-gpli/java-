@@ -1,8 +1,6 @@
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,24 +11,10 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import service.CustomerService;
 import service.HistoryService;
-import service.ProductsService;
-import service.SaleHistoryService;
-import service.UsersService;
 import entity.HistoryInfo;
-import entity.ProductInfo;
-import entity.SaleHistory;
-import entity.SaleSummary;
-import entity.Users;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 public class QueryHistory extends JFrame {
@@ -40,7 +24,6 @@ public class QueryHistory extends JFrame {
 	private JTable table;
 	private JTextField CusNo;
 	private JTextField caNo;
-
 
 	/**
 	 * Launch the application.

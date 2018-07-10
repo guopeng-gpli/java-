@@ -79,8 +79,6 @@ public class GiveChange extends JFrame {
 				if(change<0){
 					JOptionPane.showMessageDialog(null,"付款不足，请支付"+totalAmount+"元","错误提示",JOptionPane.ERROR_MESSAGE);}
 				else{
-			//	DecimalFormat df = new DecimalFormat("#.00");
-			//	change = Double.valueOf(df.format(change));
 				label.setText("找零金额:"+change);
 				}
 				
